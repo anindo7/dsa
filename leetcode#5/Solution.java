@@ -1,35 +1,28 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int len = 0;
+        int palinSize = 0;
         String result = "";
-        for(int i = 0; i < s.length(); i++) {
-            String tempResult = "";
-            String tempResultEven = "";
-
-            tempResult = findPalindrome(s, i - 1, i + 1, String.valueOf(s.charAt(i)));
-            if(tempResult.length() > len) {
-                len = tempResult.length();
+        for(int i=0;i<s.length();i++) {
+            String odd = findPalindrome(s, String.valueOf(s.charAt(i)), i-1, i+1);
+            String even = findPalindrome(s, "", i, i+1);
+            String tempResult = (odd.length() > even.length())? odd : even;
+            if(palinSize < tempResult.length()) {
+                palinSize = tempResult.length();
                 result = tempResult;
-            }
-
-            tempResultEven = findPalindrome(s, i - 1, i, "");
-            if(tempResultEven.length() > len) {
-                len = tempResultEven.length();
-                result = tempResultEven;
             }
         }
         return result;
     }
 
-    public String findPalindrome(String s, int j, int k, String tempResult) {
-        while(j >= 0 && k < s.length()) {
-            if(s.charAt(j) != s.charAt(k)) {
+    public String findPalindrome(String input, String startChar, int start, int end) {
+        while(start >= 0 && end < input.length()) {
+            if(input.charAt(start) == input.charAt(end)) {
+                startChar = input.charAt(start) + startChar + input.charAt(start);
+                start--;end++;
+            } else {
                 break;
             }
-            tempResult = s.charAt(j) + tempResult + s.charAt(k);
-            j--; k++;
         }
-        return tempResult;
+        return startChar;
     }
-
 }
