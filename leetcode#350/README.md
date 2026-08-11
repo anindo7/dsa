@@ -18,7 +18,7 @@ Given two integer arrays nums1 and nums2, return an array of their intersection.
 - 1 <= nums1.length, nums2.length <= 1000
 - 0 <= nums1[i], nums2[i] <= 1000
 
-##Follow up:
+## Follow up:
 
 - What if the given array is already sorted? How would you optimize your algorithm?
 - What if nums1's size is small compared to nums2's size? Which algorithm is better?
